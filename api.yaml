@@ -1,0 +1,74 @@
+openapi: 3.0.1
+info:
+  title: Example API
+  description: An example API implementation running on AWS Lambda behind an API Gateway HTTP API.
+  version: 1.0.0
+externalDocs:
+  description: GitHub link
+  url: https://github.com/sashee/lambda_serverless_example
+servers:
+- url: ${api_url}
+paths:
+  /user:
+    get:
+      summary: List users
+      responses:
+        200:
+          description: successful operation
+    post:
+      summary: Create user
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+        required: true
+      responses:
+        default:
+          description: Success
+  /user/{userid}:
+    get:
+      summary: Return user  
+      parameters:
+      - name: userid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
+    put:
+      summary: Update user
+      parameters:
+      - name: userid
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+        required: true
+      responses:
+        200:
+          description: Success
+    delete:
+      summary: Delete user
+      parameters:
+      - name: userid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Success
