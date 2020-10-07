@@ -62,8 +62,15 @@ module.exports.handler = async (event) => {
 			return {status: "OK"};
 		}
 	}
-	return {
-		statusCode: 404,
-		body: "Not Found",
-	};
+	if (method === "OPTIONS") {
+		return {
+			statusCode: 200,
+		};
+
+	}else {
+		return {
+			statusCode: 404,
+			body: "Not Found",
+		};
+	}
 };
